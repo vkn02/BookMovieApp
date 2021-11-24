@@ -66,27 +66,31 @@ class Home extends Component {
     }
 
     componentWillMount() {
-        // Get upcoming movies
+        // Get the upcoming movies.
         let data = null;
         let xhr = new XMLHttpRequest();
         let that = this;
         xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === 4) {
+            if (this.readyState === 4 && this.status === 200) {
                 that.setState({
                     upcomingMovies: JSON.parse(this.responseText).movies
                 });
             }
         });
-
+        
         xhr.open("GET", this.props.baseUrl + "movies?status=PUBLISHED");
+        xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+        xhr.setRequestHeader("Access-Control-Allow-Methods", "POST");
+        xhr.setRequestHeader("Access-Control-Allow-Headers", "accept, content-type");
+        xhr.setRequestHeader("Access-Control-Max-Age", "1728000");
         xhr.setRequestHeader("Cache-Control", "no-cache");
         xhr.send(data);
 
-        // Get released movies
+        // Get the released movies.
         let dataReleased = null;
         let xhrReleased = new XMLHttpRequest();
         xhrReleased.addEventListener("readystatechange", function () {
-            if (this.readyState === 4) {
+            if (this.readyState === 4 && this.status === 200) {
                 that.setState({
                     releasedMovies: JSON.parse(this.responseText).movies
                 });
@@ -94,14 +98,15 @@ class Home extends Component {
         });
 
         xhrReleased.open("GET", this.props.baseUrl + "movies?status=RELEASED");
+        xhrReleased.setRequestHeader("Access-Control-Allow-Origin", "*");
         xhrReleased.setRequestHeader("Cache-Control", "no-cache");
         xhrReleased.send(dataReleased);
 
-        // Get filters
+        // Get the filters.
         let dataGenres = null;
         let xhrGenres = new XMLHttpRequest();
         xhrGenres.addEventListener("readystatechange", function () {
-            if (this.readyState === 4) {
+            if (this.readyState === 4 && this.status === 200) {
                 that.setState({
                     genresList: JSON.parse(this.responseText).genres
                 });
@@ -109,6 +114,7 @@ class Home extends Component {
         });
 
         xhrGenres.open("GET", this.props.baseUrl + "genres");
+        xhrGenres.setRequestHeader("Access-Control-Allow-Origin", "*");
         xhrGenres.setRequestHeader("Cache-Control", "no-cache");
         xhrGenres.send(dataGenres);
 
@@ -116,7 +122,7 @@ class Home extends Component {
         let dataArtists = null;
         let xhrArtists = new XMLHttpRequest();
         xhrArtists.addEventListener("readystatechange", function () {
-            if (this.readyState === 4) {
+            if (this.readyState === 4 && this.status === 200) {
                 that.setState({
                     artistsList: JSON.parse(this.responseText).artists
                 });
@@ -124,6 +130,7 @@ class Home extends Component {
         });
 
         xhrArtists.open("GET", this.props.baseUrl + "artists");
+        xhrArtists.setRequestHeader("Access-Control-Allow-Origin", "*");
         xhrArtists.setRequestHeader("Cache-Control", "no-cache");
         xhrArtists.send(dataArtists);
     }
@@ -182,6 +189,7 @@ class Home extends Component {
         });
 
         xhrFilter.open("GET", this.props.baseUrl + "movies" + encodeURI(queryString));
+        xhrFilter.setRequestHeader("Access-Control-Allow-Origin", "*");
         xhrFilter.setRequestHeader("Cache-Control", "no-cache");
         xhrFilter.send(dataFilter);
     }

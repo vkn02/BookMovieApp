@@ -15,7 +15,7 @@ class Details extends Component {
         this.state = {
             movie: {
                 genres: [],
-                trailerUrl: "",
+                trailer_url: "",
                 artists: []
             },
             starIcons: [{
@@ -132,7 +132,7 @@ class Details extends Component {
                                 <span className="bold">Trailer:</span>
                             </Typography>
                             <YouTube
-                                videoId={movie.trailerUrl.split("?v=")[1]}
+                                videoId={movie.trailer_url.split("?v=")[1]}
                                 opts={opts}
                                 onReady={this._onReady}
                             />
