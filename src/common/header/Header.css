@@ -4,8 +4,9 @@
     padding: 8px 32px 8px 16px;
 }
 
-.login-button {
+.bookshow-button {
     float: right;
+    margin-right: 8px;
 }
 
 .app-logo {
@@ -14,17 +15,12 @@
     background: #ff7f7f;
 }
 
-.bookshow-button {
-    float: right;
-    margin-right: 8px;
-}
-
 @keyframes app-logo-spin {
     from { transform: scaleX(-1); }
 }
 
-.tabs {
-    margin-bottom: 20px;
+.login-button {
+    float: right;
 }
 
 .dispNone {
@@ -33,6 +29,10 @@
 
 .dispBlock {
     display: block;
+}
+
+.tabs {
+    margin-bottom: 20px;
 }
 
 .red {
